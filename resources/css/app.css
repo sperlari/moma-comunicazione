@@ -1,0 +1,483 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,400;500;600;700&display=swap');
+
+@import 'tailwindcss';
+@import './theme.css';
+@import './utilities.css';
+@import './custom.css' layer(utilities);
+
+@source '../../vendor/tailpress/framework/**/*.php';
+@source '../../vendor/tailpress/framework/**/**/*.php';
+@source '../../**/*.php';
+
+@import "./components/moma-nav.css";
+@import "./components/moma-hero.css";
+@import "./components/moma-transition.css";
+@import "./components/moma-hero.css";
+@import "./components/moma-transition.css";
+@import "./components/moma-case-studies.css";
+@import "./components/moma-servizi-slider.css";
+@import "./components/moma-servizi-stack.css";
+@import "./components/moma-case-studies-archive.css";
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+/*
+  Tailwind v4 compatibility border color (come avevi già)
+*/
+@layer base {
+  :root{ --moma-ink: #0f0538; }
+
+  html{
+    font-family: "Epilogue", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    color: var(--moma-ink);
+  }
+
+  body{
+    color: var(--moma-ink);
+    font-family: "Epilogue", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  }
+
+  button, input, select, textarea{ font-family: inherit; }
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-zinc-200, currentColor);
+  }
+}
+
+/* Typewriter/Reveal (word-by-word) */
+.moma-tw__word,
+.moma-tw__space,
+.moma-tw__dot{
+  display: inline;
+}
+
+.moma-tw__dot{
+  margin-left: 0;
+}
+
+/* Mobile: titoli centrati e con wrapping pulito */
+@media (max-width: 900px){
+  .moma-servizi__title,
+  .moma-case-studies__title{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 24ch;   /* va a capo bene */
+    text-wrap: balance; /* se supportato, migliora */
+  }
+}
+
+#moma-cursor{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  width: 96px;
+  height: 96px;
+  /* GSAP gestisce opacity/scale: qui lasciamo solo la base */
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+}
+
+#moma-cursor img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform-origin: 50% 50%;
+}
+
+
+/* Cursore base (dot) – segue sempre il mouse (solo desktop) */
+/* DOT cursor globale */
+#moma-dot{
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--moma-dot-size, 10px);
+  height: var(--moma-dot-size, 10px);
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  background: var(--moma-dot-color, #2b1e72);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.45); /* ring soft */
+  opacity: 0;
+  will-change: transform, opacity;
+}
+html.has-moma-dot #moma-dot{ opacity: 1; }
+
+@media (pointer: coarse){
+  #moma-dot,
+  #moma-cursor{
+    display:none !important;
+  }
+}
+
+/* Nascondo il cursore di sistema SOLO dentro l'area attiva */
+.moma-cursor-scope--active{ cursor: auto; }
+
+/* =========================================================
+   MOM A - Button system (hover wipe from right -> left)
+   - base: .m-btn
+   - variants: .m-btn--primary / --secondary / --tertiary / --tag / --menu / --form
+   - dot (right): .m-btn--dot
+   - label wrapper: .m-btn__label (NECESSARIA per mantenere testo sopra al wipe)
+   - sizes: .m-btn--sm / --md (default) / --lg
+   ========================================================= */
+
+@layer components {
+  /* Base button */
+  .m-btn {
+    @apply inline-flex relative justify-center items-center rounded-full overflow-hidden font-medium whitespace-nowrap select-none;
+    /* crea stacking context: ::before resta dietro al testo */
+    isolation: isolate;
+
+    /* size default (md) */
+    padding: 0.65rem 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1;
+
+    /* mai sottolineatura sui button-link */
+    text-decoration: none !important;
+
+    background-color: var(--btn-bg, transparent);
+    color: var(--btn-fg, #18085a);
+
+    border-width: var(--btn-bw, 0px);
+    border-style: solid;
+    border-color: var(--btn-border, transparent);
+
+    transition: color 260ms cubic-bezier(.2,.8,.2,1), border-color 260ms cubic-bezier(.2,.8,.2,1);
+  }
+
+  .m-btn:hover,
+  .m-btn:focus,
+  .m-btn:active,
+  .m-btn:visited {
+    text-decoration: none !important;
+  }
+
+  /* Il testo DEVE stare sopra al wipe */
+  .m-btn__label {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+  }
+
+  /* fallback: se non wrappi con .m-btn__label, tieni comunque il contenuto sopra al wipe */
+  .m-btn > *{
+    position: relative;
+    z-index: 2;
+  }
+
+
+  /* Wipe overlay (hover bg) */
+  .m-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: var(--btn-hover-bg, transparent);
+    z-index: 1;
+
+    transform: scaleX(0);
+    transform-origin: right center; /* cresce da destra verso sinistra */
+    transition: transform 260ms cubic-bezier(.2,.8,.2,1);
+  }
+
+  /* Hover / focus-visible = overlay ON */
+  .m-btn:hover::before,
+  .m-btn:focus-visible::before {
+    transform: scaleX(1);
+  }
+
+  /* Hover / focus-visible text color (se definito) */
+  .m-btn:hover,
+  .m-btn:focus-visible {
+    color: var(--btn-hover-fg, var(--btn-fg, #18085a));
+  }
+
+  /* Accessibilità: focus */
+  .m-btn:focus-visible {
+    outline: 2px solid rgba(73, 28, 170, 0.35);
+    outline-offset: 3px;
+  }
+
+  /* ---------------------------------------------------------
+     DOT (right) -> parte piccolo e diventa grande in hover
+     --------------------------------------------------------- */
+  .m-btn--dot {
+    padding-right: 2.70rem; /* spazio per pallino (non deve coprire il testo) */
+  }
+
+  .m-btn--dot::after {
+    content: "";
+    position: absolute;
+    right: 0.85rem;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 9999px;
+    background-color: var(--btn-dot, currentColor);
+    z-index: 3;
+
+    transform: translateY(-50%) scale(0.25); /* piccolo */
+    transition:
+      transform 260ms cubic-bezier(.2,.8,.2,1) 40ms,
+      background-color 260ms cubic-bezier(.2,.8,.2,1);
+  }
+
+  .m-btn--dot:hover::after,
+  .m-btn--dot:focus-visible::after {
+    background-color: var(--btn-hover-dot, var(--btn-dot, currentColor));
+    transform: translateY(-50%) scale(1); /* grande */
+  }
+
+  /* ---------------------------------------------------------
+     Sizes
+     --------------------------------------------------------- */
+  .m-btn--sm {
+    padding: 0.45rem 0.95rem;
+    font-size: 0.75rem;
+  }
+
+  /* IMPORTANT: i size modifier non devono annullare lo spazio del dot */
+  .m-btn--sm.m-btn--dot {
+    padding-right: 2.35rem;
+  }
+
+  .m-btn--lg {
+    padding: 0.82rem 1.55rem;
+    font-size: 0.95rem;
+  }
+
+  .m-btn--lg.m-btn--dot {
+    padding-right: 3.05rem;
+  }
+
+  /* fine tuning posizione pallino sui size */
+  .m-btn--sm.m-btn--dot::after {
+    right: 0.70rem;
+  }
+
+  .m-btn--lg.m-btn--dot::after {
+    right: 1.10rem;
+  }
+
+  /* =========================================================
+     Variants richieste
+     ========================================================= */
+
+  /* 1) BTN PRIMARIO
+     base bg #f38c12 - testo+pallino #18085a
+     hover bg #e0d9d0
+  */
+  .m-btn--primary {
+    --btn-bg: #f38c12;
+    --btn-hover-bg: #e0d9d0;
+    --btn-fg: #18085a;
+    --btn-dot: #18085a;
+  }
+
+  /* 2) BTN SECONDARIO
+     base bg #f9ead7 - testo+pallino #18085a
+     hover bg #f38c12
+  */
+  .m-btn--secondary {
+    --btn-bg: #f9ead7;
+    --btn-hover-bg: #f38c12;
+    --btn-fg: #18085a;
+    --btn-dot: #18085a;
+  }
+
+  /* 3) BTN TERZIARIO
+     base bg trasparente - testo+pallino #18085a
+     hover bg #491caa
+     (testo+pallino diventano #ebe3f9 in hover)
+  */
+  .m-btn--tertiary {
+    --btn-bg: transparent;
+    --btn-hover-bg: #491caa;
+    --btn-fg: #18085a;
+    --btn-dot: #18085a;
+
+    --btn-hover-fg: #ebe3f9;
+    --btn-hover-dot: #ebe3f9;
+  }
+
+  /* 4) TAG (small cta)
+     base bg #f0ece8 + bordo #491caa
+     testo+pallino #18085a
+     hover bg #f38c12
+  */
+  .m-btn--tag {
+    --btn-bg: #f0ece8;
+    --btn-hover-bg: #f38c12;
+    --btn-fg: #18085a;
+    --btn-dot: #18085a;
+
+    --btn-bw: 1px;
+    --btn-border: #491caa;
+  }
+
+  /* 5) VOCE MENU principale (non attivo)
+     base bg trasparente
+     hover bg #f7ba70 + icon circle #491caa (freccia dx)
+     quando dropdown "open": bg #491caa, testo #ebe3f9, icon down (circle #ebe3f9)
+  */
+  .m-btn--menu {
+    --btn-bg: transparent;
+    --btn-hover-bg: #f7ba70;
+    --btn-fg: #18085a;
+    --btn-hover-fg: #18085a;
+
+    padding-right: 2.45rem; /* spazio icona */
+  }
+
+  /* icona (mostrata solo in hover/focus o open) */
+  .m-btn--menu::after {
+    content: "";
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    width: 1.1rem;
+    height: 1.1rem;
+    opacity: 0;
+    z-index: 3;
+
+    transform: translateY(-50%) translateX(-4px);
+    transition: opacity 260ms cubic-bezier(.2,.8,.2,1), transform 260ms cubic-bezier(.2,.8,.2,1);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    /* hover icon: circle #491caa + arrow right #ebe3f9 */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='10' fill='%23491caa'/%3E%3Cpath d='M8 6l4 4-4 4' fill='none' stroke='%23ebe3f9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  .m-btn--menu:hover::after,
+  .m-btn--menu:focus-visible::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+
+  /* Stato "dropdown aperto": class is-open o aria-expanded=true */
+  .m-btn--menu.is-open,
+  .m-btn--menu[aria-expanded="true"] {
+    --btn-bg: #491caa;
+    --btn-hover-bg: #491caa;
+    --btn-fg: #ebe3f9;
+    --btn-hover-fg: #ebe3f9;
+  }
+
+  .m-btn--menu.is-open::after,
+  .m-btn--menu[aria-expanded="true"]::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+
+    /* open icon: circle #ebe3f9 + arrow down #491caa */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='10' fill='%23ebe3f9'/%3E%3Cpath d='M6 8l4 4 4-4' fill='none' stroke='%23491caa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  /* Desktop hover del parent (dropdown aperto su hover) */
+  .moma-nav__list > li.menu-item-has-children:hover > a.m-btn--menu {
+    --btn-bg: #491caa;
+    --btn-hover-bg: #491caa;
+    --btn-fg: #ebe3f9;
+    --btn-hover-fg: #ebe3f9;
+  }
+  .moma-nav__list > li.menu-item-has-children:hover > a.m-btn--menu::after{
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='10' fill='%23ebe3f9'/%3E%3Cpath d='M6 8l4 4 4-4' fill='none' stroke='%23491caa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  /* 6) BTN per FORM (newsletter / form)
+     base bg #f38c12 - testo #0f0538
+     hover bg #e0d9d0 - testo #18085a + icona wink
+  */
+  .m-btn--form {
+    --btn-bg: #f38c12;
+    --btn-hover-bg: #e0d9d0;
+    --btn-fg: #0f0538;
+    --btn-hover-fg: #18085a;
+
+    padding-right: 2.55rem; /* spazio icona */
+  }
+
+  .m-btn--form::after {
+    content: "";
+    position: absolute;
+    right: 0.85rem;
+    top: 50%;
+    width: 1.15rem;
+    height: 1.15rem;
+    opacity: 0;
+    z-index: 3;
+
+    transform: translateY(-50%) translateX(-4px);
+    transition: opacity 260ms cubic-bezier(.2,.8,.2,1), transform 260ms cubic-bezier(.2,.8,.2,1);
+
+    /* mask -> colore = currentColor */
+    background-color: currentColor;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='black' stroke-width='2'/%3E%3Ccircle cx='9' cy='10' r='1.2' fill='black'/%3E%3Cpath d='M14 10.2h3.5' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M8.5 15c1.3 1.2 2.6 1.8 3.5 1.8s2.2-.6 3.5-1.8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='black' stroke-width='2'/%3E%3Ccircle cx='9' cy='10' r='1.2' fill='black'/%3E%3Cpath d='M14 10.2h3.5' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M8.5 15c1.3 1.2 2.6 1.8 3.5 1.8s2.2-.6 3.5-1.8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+
+  .m-btn--form:hover::after,
+  .m-btn--form:focus-visible::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .m-btn,
+    .m-btn::before,
+    .m-btn--dot::after,
+    .m-btn--menu::after,
+    .m-btn--form::after {
+      transition: none !important;
+    }
+  }
+}
+
+/* =========================================================
+   Case studies: evita <a> annidati
+   - La card resta cliccabile su tutta l'area (link overlay)
+   - Le chips (categorie) restano cliccabili come link veri
+   ========================================================= */
+.moma-case-card{ position: relative; }
+.moma-case-card__link{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  text-decoration: none;
+}
+.moma-case-card__chips{ position: relative; z-index: 2; }
+.moma-case-card__chips a{ position: relative; z-index: 2; }
+
+/* Media sopra al link overlay, così gli hover (cursor image) funzionano */
+.moma-case-card__media{ position: relative; z-index: 2; }
+.moma-case-card__media-link{ position: absolute; inset: 0; z-index: 1; text-decoration: none; }
+.moma-case-card__media-link:focus{ outline: none; }
+
+/* Servizi page */
+.moma-servizi-page-bg{ position: relative; z-index: 1; background: linear-gradient(135deg, #cecbc7 0%, #ece6e0 100%); }
+.moma-servizi-page-bg::before{ content:""; position:absolute; inset:0; pointer-events:none; opacity:.12; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E"); mix-blend-mode:multiply; }
+.moma-servizi-after{ position: relative; z-index: 20; }

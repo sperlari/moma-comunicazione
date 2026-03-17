@@ -1,0 +1,43 @@
+/* Patch servizi/glossario senza dipendere dalla build Vite */
+.moma-servizi-page-bg{ position: relative; z-index: 1; background: linear-gradient(135deg, #cecbc7 0%, #ece6e0 100%); }
+.moma-servizi-page-bg::before{ content:""; position:absolute; inset:0; pointer-events:none; opacity:.12; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E"); mix-blend-mode:multiply; }
+.moma-servizi-after{ position: relative; z-index: 20; }
+.moma-servizi-stack{ position: relative; z-index: 1; }
+
+
+/* Hero/banner/projects cursors + reveal-friendly services page */
+.moma-project-card{
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  transition: background-color .22s ease, border-radius .22s ease, box-shadow .22s ease;
+}
+.moma-project-card__media{
+  display:block;
+  overflow:hidden;
+  border-radius:0;
+  transform: translateZ(0);
+}
+.moma-project-card__img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:0;
+  transform: scale(1);
+  transform-origin:center center;
+}
+.moma-project-card__body{ padding-top: 1rem; }
+.moma-glossary-trigger{
+  cursor:pointer;
+  transition: background-color .22s ease, color .22s ease, padding .22s ease, border-radius .22s ease;
+}
+.moma-glossary-popover__drag,
+.moma-glossary-popover__close,
+.moma-glossary-modal__close{
+  cursor:pointer;
+}
+
+.moma-glossary-trigger.is-active{background:#491caa;color:#fff;padding-left:.18em;padding-right:.18em;border-radius:.3em;}
+.moma-glossary-popover__drag,.moma-glossary-popover__close,.moma-glossary-modal__close{cursor:pointer !important;}
+.moma-project-card__media,.moma-project-card__img{border-radius:0;}
+.moma-project-card.is-hover .moma-project-card__media,.moma-project-card.is-hover .moma-project-card__img{border-top-left-radius:24px;border-top-right-radius:24px;border-bottom-left-radius:0 !important;border-bottom-right-radius:0 !important;}

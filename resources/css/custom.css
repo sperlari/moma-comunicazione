@@ -1,0 +1,157 @@
+
+.entry-content,
+.block-editor-block-list__layout {
+  color: var(--moma-ink, #0f0538);
+  font-size: var(--text-lg);
+  line-height: var(--text-lg--line-height);
+
+  :where(
+      .entry-content > *:not(li),
+      .block-editor-block-list__layout > *:not(li)
+    ) {
+    margin-top: --spacing(6);
+    margin-bottom: --spacing(6);
+  }
+
+  :where(h2) {
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-2xl);
+    line-height: var(--text-2xl--line-height);
+    margin-top: --spacing(12);
+  }
+
+  :where(h3) {
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-xl);
+    line-height: var(--text-xl--line-height);
+    margin-top: --spacing(8);
+  }
+
+  :where(h2 + h3) {
+    margin-top: 0;
+  }
+
+  :where(ul, ol) {
+    padding-left: 1.5rem;
+  }
+
+  :where(ul) {
+    list-style-type: disc;
+  }
+
+  :where(ol) {
+    list-style-type: decimal;
+  }
+
+  :where(a) {
+    color: var(--color-primary);
+  }
+
+  :where(li) {
+    padding-left: --spacing(3);
+  }
+
+  :where(li)::marker {
+    color: var(--color-zinc-500);
+  }
+
+  :where(li > *),
+  :where(li li) {
+    margin-top: --spacing(4);
+  }
+
+  :where(ol > li)::marker {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  :where(strong) {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  :where(figure) {
+    margin-top: --spacing(12);
+    margin-bottom: --spacing(12);
+  }
+
+  :where(li > :first-child) {
+    margin-top: 0 !important;
+  }
+
+  :where(li > :last-child) {
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Utility: Fraunces (titoli specifici) */
+.font-fraunces{
+  font-family: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+}
+
+/* Glossario trigger + popover */
+.moma-glossary-trigger{
+  font-weight:700;
+  cursor:pointer;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  will-change: background-color, color, padding-left, padding-right, border-radius, transform;
+}
+
+.moma-glossary-popover__drag,
+.moma-glossary-popover__close,
+.moma-glossary-modal__close{
+  cursor:pointer;
+}
+
+/* Card "i nostri progetti" */
+.moma-project-card{
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  transition: background-color .2s ease, border-radius .2s ease, box-shadow .2s ease;
+}
+
+.moma-project-card__media{
+  display:block;
+  overflow:hidden;
+  border-radius:0;
+  transform: translateZ(0);
+}
+
+.moma-project-card__img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:0;
+  transform: scale(1);
+  transform-origin:center center;
+}
+
+.moma-project-card__body{
+  padding-top: 1rem;
+}
+
+.moma-project-card__cta{
+  margin-top:0;
+}
+
+/* Glossario active trigger */
+.moma-glossary-trigger.is-active{
+  background:#491caa;
+  color:#fff;
+  padding-left:.18em;
+  padding-right:.18em;
+  border-radius:.3em;
+}
+
+/* I nostri progetti: img flush, no radius by default, top radius only on hover */
+.moma-project-card{overflow:visible;}
+.moma-project-card__media{border-radius:0; overflow:hidden;}
+.moma-project-card__img{border-radius:0;}
+.moma-project-card.is-hover .moma-project-card__media,
+.moma-project-card.is-hover .moma-project-card__img{
+  border-top-left-radius:24px;
+  border-top-right-radius:24px;
+  border-bottom-left-radius:0 !important;
+  border-bottom-right-radius:0 !important;
+}

@@ -1,0 +1,133 @@
+.moma-glossary-trigger{
+  appearance:none;
+  background:transparent;
+  border:0;
+  padding:0;
+  margin:0;
+  cursor:pointer;
+  color:inherit;
+  font:inherit;
+  font-weight:600;
+}
+
+.moma-glossary-layer{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  pointer-events:none;
+}
+
+.moma-glossary-layer.is-open{
+  pointer-events:auto;
+}
+
+.moma-glossary-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.18);
+  opacity:0;
+  transition:opacity .15s ease;
+}
+
+.moma-glossary-layer.is-open .moma-glossary-backdrop{
+  opacity:1;
+}
+
+.moma-glossary-cardwrap{
+  position:absolute;
+  inset:0;
+}
+
+.moma-glossary-card{
+  position:fixed;
+  max-width:420px;
+  width:calc(100vw - 24px);
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.18);
+  padding:18px 18px 14px;
+}
+
+.moma-glossary-close{
+  position:absolute;
+  top:10px;
+  right:12px;
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:0;
+  background:rgba(0,0,0,.06);
+  cursor:pointer;
+  font-size:22px;
+  line-height:34px;
+}
+
+.moma-glossary-title{
+  font-weight:600;
+  font-size:18px;
+  padding-right:42px;
+  margin-bottom:10px;
+}
+
+.moma-glossary-content{
+  font-size:14px;
+  line-height:1.55;
+}
+
+.moma-glossary-actions{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+  flex-wrap:wrap;
+}
+
+.moma-glossary-action{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 12px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,.15);
+  text-decoration:none;
+  color:inherit;
+  font-size:13px;
+  line-height:1;
+}
+
+/* Mobile: modal full-screen */
+@media (max-width: 899px){
+  .moma-glossary-card{
+    inset:0;
+    max-width:none;
+    width:auto;
+    border-radius:0;
+    padding:22px 18px 18px;
+  }
+
+  .moma-glossary-close{
+    top:14px;
+    right:14px;
+    width:42px;
+    height:42px;
+    font-size:26px;
+    line-height:42px;
+  }
+
+  .moma-glossary-title{
+    font-size:20px;
+    margin-top:18px;
+  }
+}
+.moma-glossary-trigger.is-active{
+  background:#491caa;
+  color:#fff;
+  padding-left:.18em;
+  padding-right:.18em;
+  border-radius:.3em;
+}
+
+.moma-glossary-popover__drag,
+.moma-glossary-popover__close,
+.moma-glossary-modal__close{
+  cursor:pointer !important;
+}

@@ -1,0 +1,178 @@
+@layer components {
+  .moma-case-studies{
+    background:#fbf7f1;
+    padding-top: clamp(60px, 7vw, 100px);
+    padding-bottom: clamp(60px, 7vw, 100px);
+
+    /* stessi rapporti del reference: top 20svh + height 80svh = 100svh */
+    --moma-cs-sticky-top: 20svh;
+    --moma-cs-sticky-height: 80svh;
+  }
+
+  .moma-case-studies__heading{
+    max-width: 96rem;
+    padding-bottom: clamp(28px, 3.5vw, 50px);
+  }
+
+  .moma-case-studies__eyebrow{
+    color: var(--moma-ink, #0f0538);
+    font-weight:600;
+    letter-spacing:-0.01em;
+    font-size: clamp(20px, 2.2vw, 34px);
+    line-height:1.05;
+    margin:0 0 10px 0;
+  }
+
+  .moma-case-studies__title{
+    margin:0;
+    font-family: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+    font-weight:600;
+    letter-spacing:-0.02em;
+    font-size: clamp(44px, 5.2vw, 86px);
+    line-height:0.95;
+    color:#f59f2f;
+  }
+
+  /* Punto finale blu come da direttive */
+  .moma-case-studies__dot{ color: #2b1e72; } /* blu */
+
+  .moma-case-studies__component{ width:100%; }
+
+  /* ====== struttura sticky IDENTICA (numeri) al sito ispirazione ====== */
+  .case-studies_item{
+    position: relative;
+    z-index: var(--cs-z, 1);
+  }
+
+  .case-card_sticky-frame{
+    height: 200svh;
+    margin-bottom: -100svh;
+    position: relative;
+  }
+
+  .case-card_sticky-element{
+    height: var(--moma-cs-sticky-height);
+    position: sticky;
+    top: var(--moma-cs-sticky-top);
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+
+  .case-card_sticky-trigger{
+    pointer-events: none;
+    height: 100svh;
+    margin-top: calc(-1 * var(--moma-cs-sticky-top));
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  /* ============================================================ */
+
+  /* Full-width background (come tua direttiva Moma) */
+  .moma-case-card{
+    display:flex;
+    text-decoration:none;
+    color: var(--moma-ink, #0f0538);
+
+    width: 100%;
+    margin-left: 0;
+
+    height: 150%;
+    border-top: 1px solid rgba(15,5,56,0.10);
+    border-bottom: 1px solid rgba(15,5,56,0.10);
+  }
+
+  .moma-case-card__inner{
+    width: 100%;
+    max-width: 96rem;
+    margin: 0 auto;
+    padding: clamp(18px, 2.2vw, 32px);
+
+    display:flex;
+    flex-direction:column;
+    height:100%;
+  }
+
+  .moma-case-card__top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:18px;
+  }
+
+  .moma-case-card__client{
+    margin:0;
+    font-weight:650;
+    letter-spacing:-0.01em;
+    font-size: clamp(22px, 2.2vw, 30px);
+    line-height:1.05;
+  }
+
+  .moma-case-card__subtitle{
+    margin:8px 0 0 0;
+    color: rgba(15,5,56,0.78);
+    font-size: 13px;
+    line-height: 1.35;
+    max-width: 52ch;
+  }
+
+  .moma-case-card__chips{
+    list-style:none;
+    padding:0;
+    margin:2px 0 0 0;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    gap:10px;
+  }
+
+  .moma-case-card__chip{
+    font-size:12px;
+    line-height:1;
+    padding:6px 10px;
+    border-radius:9999px;
+    background: rgba(255,255,255,0.92);
+    border:1px solid rgba(15,5,56,0.55);
+    color: var(--moma-ink, #0f0538);
+    white-space:nowrap;
+  }
+
+  .moma-case-card__media{
+    margin-top: 18px;
+    flex: 1;
+    overflow:hidden;
+    background: rgba(255,255,255,0.22);
+  }
+
+  .moma-case-card__img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transform: translateZ(0);
+  }
+
+  @media (max-width: 820px){
+    .moma-case-card__top{ flex-direction:column; }
+    .moma-case-card__chips{ justify-content:flex-start; }
+  }
+  .moma-case-studies { position: relative; z-index: 1; }
+  /* Lo sticky-frame (200svh con margin-bottom negativo) può sovrapporsi alle sezioni successive.
+     Alziamo TUTTE le sezioni dopo Case Studies, non solo la prima. */
+  .moma-case-studies ~ * { position: relative; z-index: 20; }
+  .moma-case-card,
+  .moma-case-card__media,
+  .moma-case-card__img{
+    border-radius: 10px !important;
+  }
+}
+
+@media (max-width: 900px){
+  .moma-case-studies__title{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 22ch;
+  }
+}

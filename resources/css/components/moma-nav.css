@@ -1,0 +1,378 @@
+/* Barra vetro */
+.moma-header{ position: relative; z-index: 50; }
+
+.moma-navBar{
+  position: fixed;
+  left: 50%;
+  top: 50px;
+  transform: translateX(-50%);
+  width: min(1020px, calc(100% - 32px));
+  height: 78px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 18px;
+  border-radius: 9999px;
+
+  background: rgba(245, 238, 228, 0.72);
+  border: 1px solid rgba(255,255,255,0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.16);
+}
+
+/* Logo */
+.moma-logo{
+  display: inline-flex;
+  align-items: center;
+  height: 54px;
+  width: 140px;
+  position: relative;
+  text-decoration: none;
+}
+
+.moma-logo__clip{
+  position: relative;
+  width: 140px;
+  height: 54px;
+  overflow: hidden; /* la parola non esce mai */
+}
+
+.moma-logo__word{
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.moma-logo__text,
+.moma-logo__aChar{
+  font-family: "Franceus", serif;
+  font-size: 34px;
+  line-height: 1;
+  color: #1A1638;
+}
+
+.moma-logo__dot{ 
+    color: #F08A19;
+    font-size: 64px;
+    position: absolute;
+    right: -14px;
+    bottom: -6px;
+} 
+
+.moma-logo__mark{
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 46px;
+  height: 46px;
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+}
+
+.moma-logo__circle{
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: #F08A19;
+}
+
+.moma-logo__a{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -54%);
+  color: #fff;
+  font-family: "Franceus", serif;
+  font-size: 34px;
+  line-height: 1;
+}
+
+.moma-logo__aDot{
+  position: absolute;
+  width: 4px;
+    height: 4px;
+    border-radius: 9999px;
+    background: #fff;
+    left: 78% !important;
+    top: 66% !important;
+
+  /* ✅ punto in alto (non in basso) */
+  left: 70%;
+  top: 28%;
+
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+/* Nav desktop */
+.moma-nav{ flex: 1; display: flex; justify-content: center; }
+.moma-nav__list{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0;
+  margin: 0;
+}
+
+.moma-nav__list > li{
+  position: relative;
+}
+
+/* Link base */
+.moma-nav__list > li > a{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 42px;
+  padding: 0 42px 0 16px; /* spazio icona a dx già “prenotato” */
+  border-radius: 9999px;
+  text-decoration: none;
+
+  font-family: "Epilogue", system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+
+  color: #1A1638;
+  background: transparent;
+  transition: background .18s ease, color .18s ease;
+}
+
+/* punto finale sempre presente */
+.moma-nav__list > li > a::after{
+  content: ".";
+  margin-left: 1px;
+}
+
+/* Icon circle (solo hover/selected) */
+.moma-nav__list > li > a::before{
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.85);
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.55);
+  opacity: 0;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.moma-nav__list > li > a:hover{
+  background: #3B21B6;
+  color: #fff;
+}
+
+/* Stato attivo = stile hover (pagina corrente) */
+.moma-nav__list > li.current-menu-item > a,
+.moma-nav__list > li.current_page_item > a,
+.moma-nav__list > li.current-menu-ancestor > a,
+.moma-nav__list > li.current_page_ancestor > a,
+.moma-nav__list > li.moma-force-active > a{
+  background: #3B21B6;
+  color: #fff;
+}
+
+.moma-nav__list > li.current-menu-item > a::before,
+.moma-nav__list > li.current_page_item > a::before,
+.moma-nav__list > li.current-menu-ancestor > a::before,
+.moma-nav__list > li.current_page_ancestor > a::before,
+.moma-nav__list > li.moma-force-active > a::before{
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+.moma-nav__list > li > a:hover::before{
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+/* “selected/highlight” applicabile tramite classe del menu item: moma-highlight */
+.moma-nav__list > li.moma-highlight > a{
+  background: #F4B666;
+  color: #3B21B6;
+}
+.moma-nav__list > li.moma-highlight > a::before{
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+  background: #3B21B6;
+}
+
+/* Dropdown staccati */
+.moma-nav__list > li ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.moma-nav__list > li.menu-item-has-children > ul{
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 14px);          /* staccato dalla barra */
+  transform: translateX(-50%) translateY(8px);
+  min-width: 170px;
+
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+  z-index: 60;
+}
+
+/* show on hover / focus */
+.moma-nav__list > li.menu-item-has-children:hover > ul,
+.moma-nav__list > li.menu-item-has-children:focus-within > ul{
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* dropdown item */
+.moma-nav__list > li.menu-item-has-children > ul > li > a{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-family: "Epilogue", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #1A1638;
+  background: transparent;
+  transition: background .18s ease;
+}
+
+/* cerchietto dx dropdown (solo hover) */
+.moma-nav__list > li.menu-item-has-children > ul > li > a::after{
+  content: "↗";
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  background: #3B21B6;
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.moma-nav__list > li.menu-item-has-children > ul > li > a:hover{
+  background: #F4B666;
+}
+.moma-nav__list > li.menu-item-has-children > ul > li > a:hover::after{
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Burger desktop hidden */
+.moma-burger{ display:none; }
+
+/* Mobile */
+@media (max-width: 900px){
+  .moma-nav{ display:none; }
+  .moma-burger{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px; height: 44px;
+    border-radius: 9999px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  .moma-burger__icon{
+    width: 18px;
+    height: 2px;
+    background: #3B21B6;
+    border-radius: 2px;
+    position: relative;
+  }
+  .moma-burger__icon::before,
+  .moma-burger__icon::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:18px;
+    height:2px;
+    background:#3B21B6;
+    border-radius:2px;
+  }
+  .moma-burger__icon::before{ top:-6px; }
+  .moma-burger__icon::after{ top: 6px; }
+
+  /* overlay */
+  .moma-mobile{
+    position: fixed;
+    inset: 0;
+    background: rgba(245, 238, 228, 0.95);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 70;
+  }
+  .moma-mobile__close{
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 9999px;
+    border: none;
+    background: transparent;
+    color: #3B21B6;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .moma-mobile__inner{
+    height: 100%;
+    display: grid;
+    place-items: center;
+    padding: 80px 20px 40px;
+  }
+
+  .moma-mobile .moma-nav__list{
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .moma-mobile .moma-nav__list > li > a{
+    height: 40px;
+    padding: 0 42px 0 18px;
+  }
+
+  /* mobile submenu: di default nascosto, aperto con classe */
+  .moma-mobile .moma-nav__list > li.menu-item-has-children > ul{
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+    min-width: auto;
+    display: none;
+  }
+  .moma-mobile .moma-nav__list > li.is-open > ul{
+    display: block;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.14);
+    padding: 8px;
+  }
+}

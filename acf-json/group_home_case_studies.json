@@ -1,0 +1,129 @@
+{
+  "key": "group_home_case_studies",
+  "title": "Home – Case studies",
+  "fields": [
+    {
+      "key": "field_home_cs_eyebrow",
+      "label": "Testo piccolo sopra (eyebrow)",
+      "name": "home_cs_eyebrow",
+      "type": "text",
+      "required": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Esperienza, strategia, visione.",
+      "maxlength": 120
+    },
+    {
+      "key": "field_home_cs_title",
+      "label": "Titolo sezione",
+      "name": "home_cs_title",
+      "type": "text",
+      "instructions": "Lascia il punto finale se vuoi il puntino colorato.",
+      "required": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Siamo un punto fermo.",
+      "maxlength": 120
+    },
+    {
+      "key": "field_home_cs_mode",
+      "label": "Modalità di selezione",
+      "name": "home_cs_mode",
+      "type": "radio",
+      "required": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "auto": "Automatica (ordine pubblicazione)",
+        "manual": "Manuale (scelta case studies)"
+      },
+      "default_value": "auto",
+      "layout": "horizontal",
+      "return_format": "value"
+    },
+    {
+      "key": "field_home_cs_auto_max",
+      "label": "Numero massimo (solo automatica)",
+      "name": "home_cs_auto_max",
+      "type": "number",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_home_cs_mode",
+            "operator": "==",
+            "value": "auto"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": 8,
+      "min": 1,
+      "max": 30,
+      "step": 1
+    },
+    {
+      "key": "field_home_cs_manual",
+      "label": "Case studies (manuale)",
+      "name": "home_cs_manual",
+      "type": "relationship",
+      "instructions": "Seleziona i case studies nell’ordine in cui vuoi mostrarli.",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_home_cs_mode",
+            "operator": "==",
+            "value": "manual"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "post_type": [
+        "case_study"
+      ],
+      "filters": [
+        "search"
+      ],
+      "elements": [
+        "featured_image"
+      ],
+      "return_format": "id"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_type",
+        "operator": "==",
+        "value": "front_page"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "seamless",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0
+}

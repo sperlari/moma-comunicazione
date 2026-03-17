@@ -1,0 +1,276 @@
+/*
+  Footer Moma (replica Figma)
+  - box bianco con 3 colonne
+  - claim FUORI dal box
+  - case study box alto come box bianco
+  Nota: qui usiamo CSS "plain" per non dipendere dal rebuild Tailwind.
+*/
+
+.moma-footer{
+  background: #f4e2d2;
+  padding: 64px 0 28px;
+}
+
+.moma-footer__container{ position: relative; }
+
+.moma-footer__top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  margin-bottom: 28px;
+}
+
+.moma-footer__title{
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #0f0538;
+  margin:0;
+}
+
+.moma-footer__cta{
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  background: #3b21b6;
+  display:grid;
+  place-items:center;
+  flex: 0 0 auto;
+}
+
+.moma-footer__cta svg{
+  stroke: #ffffff;
+  stroke-width: 2.4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.moma-footer__layout{
+  display:grid;
+  grid-template-columns: 1fr 300px;
+  grid-template-rows: auto auto;
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* Desktop: box e case same height */
+.moma-footer__box{ grid-column: 1; grid-row: 1; }
+.moma-footer__case{ grid-column: 2; grid-row: 1; }
+.moma-footer__claim{ grid-column: 1; grid-row: 2; }
+
+.moma-footer__box{
+  background: #ffffff;
+  border: 1px solid rgba(73, 28, 170, 0.55);
+  border-radius: 16px;
+  padding: 22px 22px;
+  min-height: 240px;
+  display:flex;
+}
+
+.moma-footer__boxgrid{
+  width:100%;
+  display:grid;
+  grid-template-columns: 1.25fr 0.9fr 48px;
+  gap: 18px;
+  align-items:start;
+}
+
+.moma-footer__h{
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f0538;
+  margin-bottom: 12px;
+}
+
+/* HubSpot form (e fallback) */
+.moma-footer__hs,
+.moma-footer__stub{
+  max-width: 340px;
+}
+
+.moma-footer__stub{ display:grid; gap:12px; }
+
+.moma-footer .hs-form .hs-form-field{ margin-bottom: 12px; }
+.moma-footer .hs-form label{ display:none !important; }
+
+.moma-footer .hs-form input[type="email"],
+.moma-footer .hs-form input[type="text"],
+.moma-footer__stub input{
+  width: 100% !important;
+  height: 38px;
+  border-radius: 9999px;
+  border: 1px solid rgba(73, 28, 170, 0.7);
+  padding: 0 14px;
+  font-size: 13px;
+  outline: none;
+}
+
+.moma-footer .hs-form input::placeholder,
+.moma-footer__stub input::placeholder{
+  color: rgba(15,5,56,0.45);
+}
+
+.moma-footer .hs-form .hs-submit,
+.moma-footer__stub button{
+  margin-top: 8px;
+}
+
+.moma-footer .hs-form input[type="submit"],
+.moma-footer__stub button{
+  appearance:none;
+  border: 0;
+  background: #f38c12;
+  color: #0f0538;
+  height: 30px;
+  padding: 0 14px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor:pointer;
+}
+
+.moma-footer__menu ul{ margin:0; padding:0; list-style:none; }
+.moma-footer__menu li{ margin: 0 0 8px; }
+
+.moma-footer__menu a{
+  color: #0f0538;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.moma-footer__menu a::after{
+  content: '.';
+  margin-left: 1px;
+}
+
+.moma-footer__menu a:hover{ text-decoration: underline; }
+
+.moma-footer__social{
+  display:flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+  padding-top: 2px;
+}
+
+.moma-footer__social a{
+  color: #491caa;
+  display:inline-flex;
+}
+
+.moma-footer__social svg{
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Claim */
+.moma-footer__claim{ margin-top: 4px; }
+
+.moma-footer__claim-top{
+  font-size: 26px;
+  line-height: 1.05;
+  font-weight: 600;
+  color: #0f0538;
+}
+
+.moma-footer__claim-bottom{
+  font-size: 26px;
+  line-height: 1.05;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.moma-footer__claim-accent{ color: #f38c12; }
+.moma-footer__claim-dot{ color: #0f0538; }
+
+/* Case study */
+.moma-footer__case{
+  min-height: 240px;
+}
+
+.moma-footer__case-link{
+  display:block;
+  height: 100%;
+  border-radius: 12px;
+  overflow:hidden;
+  background: #dedede;
+  text-decoration:none;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.moma-footer__case-media{ position: relative; height: 100%; }
+
+.moma-footer__case-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display:block;
+}
+
+.moma-footer__case-img--placeholder{
+  background: linear-gradient(135deg, rgba(73,28,170,0.25), rgba(243,140,18,0.20));
+}
+
+.moma-footer__case-overlay{
+  position:absolute;
+  inset:0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.0) 55%);
+}
+
+.moma-footer__case-text{
+  position:absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  color: #ffffff;
+}
+
+.moma-footer__case-title{
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.moma-footer__case-subtitle{
+  font-size: 11px;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+
+.moma-footer__case-dot{
+  position:absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #3b21b6;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.45);
+}
+
+.moma-footer__copyright{
+  margin-top: 18px;
+  font-size: 12px;
+  color: rgba(15,5,56,0.55);
+}
+
+/* Responsive */
+@media (max-width: 1024px){
+  .moma-footer__layout{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .moma-footer__box{ grid-column: 1; grid-row: 1; }
+  .moma-footer__claim{ grid-column: 1; grid-row: 2; }
+  .moma-footer__case{ grid-column: 1; grid-row: 3; }
+
+  .moma-footer__social{ flex-direction: row; justify-content:flex-start; align-items:center; }
+  .moma-footer__boxgrid{ grid-template-columns: 1fr; }
+  .moma-footer__hs,
+  .moma-footer__stub{ max-width: 100%; }
+}

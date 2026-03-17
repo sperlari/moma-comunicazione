@@ -1,0 +1,130 @@
+@layer components {
+  .moma-case-archive-intro{
+    position: relative;
+    z-index: 2;
+    background: #fbf7f1;
+  }
+
+  .moma-case-archive-intro__title{
+    margin: 0;
+    font-size: clamp(3rem, 5.6vw, 5.5rem);
+    line-height: 0.96;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+    max-width: 8ch;
+  }
+
+  .moma-case-archive-intro__dot{
+    color: #f38c12;
+  }
+
+  .moma-case-archive-intro-card{
+    background: transparent;
+  }
+
+  .moma-case-archive-intro-card .moma-case-archive-card__img{
+    aspect-ratio: 0.86;
+  }
+
+  .moma-case-archive-filters{
+    position: relative;
+    z-index: 2;
+  }
+
+  .moma-case-filter{
+    --btn-bg: #f0ece8;
+    --btn-hover-bg: #f7ba70;
+    --btn-fg: #18085a;
+    --btn-dot: #18085a;
+    --btn-bw: 1px;
+    --btn-border: #dcd4cd;
+  }
+
+  .moma-case-filter.is-active{
+    --btn-bg: #491caa;
+    --btn-hover-bg: #491caa;
+    --btn-fg: #ebe3f9;
+    --btn-hover-fg: #ebe3f9;
+    --btn-dot: #ebe3f9;
+    --btn-hover-dot: #ebe3f9;
+    --btn-border: #491caa;
+  }
+
+  .moma-case-archive-grid{
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .moma-case-archive-card{
+    background: transparent;
+  }
+
+  .moma-case-archive-card__media,
+  .moma-case-archive-card__img{
+    border-radius: 0;
+  }
+
+  .moma-case-archive-card__img{
+    width: 100%;
+    aspect-ratio: 1.06;
+  }
+
+  .moma-case-archive-card__body{
+    padding-top: 0.95rem;
+  }
+
+  .moma-case-archive-card__title{
+    font-size: 1.5rem;
+  }
+
+  .moma-case-archive-card__subtitle{
+    font-size: 0.95rem;
+    max-width: 58ch;
+  }
+
+  .moma-case-archive-card--featured{
+    grid-column: 1 / -1;
+  }
+
+  .moma-case-archive-card--featured .moma-case-archive-card__img{
+    aspect-ratio: 2.35;
+  }
+
+  .moma-case-archive-card--featured .moma-case-archive-card__title{
+    font-size: clamp(1.65rem, 2.8vw, 2.25rem);
+  }
+
+  .moma-case-archive-empty{
+    display: grid;
+    place-items: center;
+    min-height: 180px;
+    text-align: center;
+    color: rgba(24, 8, 90, 0.72);
+  }
+
+  .moma-case-archive-empty p{
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  @media (min-width: 900px){
+    .moma-case-archive-grid{
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.5rem 2rem;
+    }
+  }
+
+  @media (max-width: 899px){
+    .moma-case-archive-intro__title{
+      max-width: 10ch;
+    }
+
+    .moma-case-archive-card--featured .moma-case-archive-card__img,
+    .moma-case-archive-card__img{
+      aspect-ratio: 1.14;
+    }
+  }
+}

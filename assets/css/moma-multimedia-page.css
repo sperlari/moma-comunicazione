@@ -1,0 +1,101 @@
+.moma-multimedia-page__title{
+  text-wrap: balance;
+}
+
+.moma-multimedia-page__intro,
+.moma-multimedia-page__intro p{
+  font-size: 0.98rem;
+  line-height: 1.72;
+}
+
+.moma-multimedia-page__intro p{
+  margin: 0 0 1rem;
+}
+
+.moma-multimedia-page__intro p:last-child{
+  margin-bottom: 0;
+}
+
+.moma-multimedia-card{
+  outline: none;
+}
+
+.moma-multimedia-card:focus-visible{
+  box-shadow: 0 0 0 3px rgba(73,28,170,.16);
+  border-radius: 20px;
+}
+
+.moma-multimedia-card__media,
+.moma-multimedia-card__img{
+  border-radius: 0;
+}
+
+.moma-multimedia-card__img{
+  aspect-ratio: 1.16;
+  background: #ebe7e2;
+}
+
+.moma-multimedia-card__body{
+  position: relative;
+}
+
+.moma-multimedia-card__cta{
+  background: #491caa;
+  color: #fff;
+}
+
+.moma-multimedia-card__cta:hover,
+.moma-multimedia-card__cta:focus-visible{
+  transform: translateY(-2px) scale(1.03);
+}
+
+.moma-multimedia-page__pagination ul{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.moma-multimedia-page__pagination a,
+.moma-multimedia-page__pagination span{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.6rem;
+  color: #18085a;
+  text-decoration: none;
+  font-size: .88rem;
+  line-height: 1;
+}
+
+.moma-multimedia-page__pagination .current{
+  font-weight: 600;
+}
+
+.moma-multimedia-page__banner{
+  min-height: 270px;
+  box-shadow: 0 14px 34px rgba(189, 112, 22, 0.22);
+}
+
+@media (max-width: 1023px){
+  .moma-multimedia-page__pagination ul{
+    justify-content: center;
+  }
+}
+
+@media (max-width: 767px){
+  .moma-multimedia-page__hero{
+    min-height: 76vh;
+  }
+
+  .moma-multimedia-card__img{
+    aspect-ratio: 1.08;
+  }
+
+  .moma-multimedia-page__banner{
+    min-height: 230px;
+  }
+}

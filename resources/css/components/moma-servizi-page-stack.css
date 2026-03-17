@@ -1,0 +1,81 @@
+/* Riusa il sistema Case Studies, ma lo porta full-screen e con layout servizi */
+
+.moma-servizi-stack {
+  padding: 0;
+  color: #18085a;
+
+  /* Full screen sticky */
+  --moma-cs-sticky-top: 0svh;
+  --moma-cs-sticky-height: 100svh;
+
+  /* Override delle scelte “case-studies” (che limitano max-width ecc.) */
+  background-color: transparent;
+}
+
+/* Togli il max-width del componente case-studies (era il motivo dei mega margini) */
+.moma-servizi-stack .case-studies {
+  max-width: none;
+  padding: 0;
+}
+
+/* Centra la card dentro la viewport e falla occupare davvero lo schermo */
+.moma-servizi-stack .case-card_sticky-element {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 2.6vw, 2.75rem);
+}
+
+/* Card “servizio” full screen (entro il padding) */
+.moma-servizio-card {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 28px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  box-shadow: 0 25px 55px rgba(0,0,0,.12);
+}
+
+.moma-servizio-card__media {
+  position: relative;
+  background: #eae6df;
+}
+
+.moma-servizio-card__media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.moma-servizio-card__content {
+  padding: clamp(1.5rem, 3.2vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.moma-servizio-card__title {
+  color: #f38c12;
+  font-size: clamp(1.75rem, 2.6vw, 3rem);
+  line-height: 1.05;
+}
+
+.moma-servizio-card__text {
+  color: #18085a;
+  font-size: 1rem;
+  line-height: 1.65;
+  max-width: 58ch;
+}
+
+/* Responsive: sotto ~900px metti immagine sopra e testo sotto */
+@media (max-width: 900px) {
+  .moma-servizio-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: 44svh 1fr;
+    border-radius: 22px;
+  }
+}

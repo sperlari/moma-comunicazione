@@ -1,0 +1,210 @@
+{
+  "key": "group_moma_cursori_options",
+  "title": "Impostazioni Tema – Cursori",
+  "fields": [
+    {
+      "key": "field_moma_cursori_intro",
+      "label": "",
+      "name": "",
+      "type": "message",
+      "message": "Qui puoi impostare il puntatore immagine (solo in alcune aree) e il dot che accompagna il cursore di sistema.\n\nNota: su mobile/touch i cursori custom sono disattivati automaticamente.",
+      "new_lines": "wpautop",
+      "esc_html": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      }
+    },
+    {
+      "key": "field_moma_cursori_tab_img",
+      "label": "Puntatore immagine",
+      "name": "",
+      "type": "tab",
+      "placement": "top",
+      "endpoint": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      }
+    },
+    {
+      "key": "field_cursor_team_enabled",
+      "label": "Team – Abilita puntatore immagine",
+      "name": "cursor_team_enabled",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "message": "Attivo",
+      "ui_on_text": "ON",
+      "ui_off_text": "OFF",
+      "instructions": "Se attivo, nelle sezioni Team può comparire un puntatore con immagine.",
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      }
+    },
+    {
+      "key": "field_cursor_team_image",
+      "label": "Team – Immagine puntatore (default)",
+      "name": "cursor_team_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "instructions": "Immagine usata di default. Se nella pagina/blocco è impostata un’immagine, quella ha priorità.",
+      "wrapper": {
+        "width": "67",
+        "class": "",
+        "id": ""
+      }
+    },
+    {
+      "key": "field_cursor_home_hero_enabled",
+      "label": "Home Hero – Abilita puntatore immagine",
+      "name": "cursor_home_hero_enabled",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "message": "Attivo",
+      "ui_on_text": "ON",
+      "ui_off_text": "OFF",
+      "instructions": "Se attivo, passando sulle card della Hero in Home può comparire un puntatore con immagine.",
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      }
+    },
+    {
+      "key": "field_cursor_home_hero_image",
+      "label": "Home Hero – Immagine puntatore (default)",
+      "name": "cursor_home_hero_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "instructions": "Immagine usata di default. Se nella Home imposti un’immagine, quella ha priorità.",
+      "wrapper": {
+        "width": "67",
+        "class": "",
+        "id": ""
+      }
+    },
+    {
+      "key": "field_cursor_home_cs_enabled",
+      "label": "Home Case Studies – Abilita puntatore immagine",
+      "name": "cursor_home_cs_enabled",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "message": "Attivo",
+      "ui_on_text": "ON",
+      "ui_off_text": "OFF",
+      "instructions": "Se attivo, passando sull’immagine dei Case Studies (slider) può comparire un puntatore con immagine.",
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      }
+    },
+    {
+      "key": "field_cursor_home_cs_image",
+      "label": "Home Case Studies – Immagine puntatore (default)",
+      "name": "cursor_home_cs_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "instructions": "Immagine usata di default. Se nella Home imposti un’immagine, quella ha priorità.",
+      "wrapper": {
+        "width": "67",
+        "class": "",
+        "id": ""
+      }
+    },
+    {
+      "key": "field_moma_cursori_tab_dot",
+      "label": "Dot (indicatore)",
+      "name": "",
+      "type": "tab",
+      "placement": "top",
+      "endpoint": 0,
+      "instructions": "Il dot accompagna il cursore di sistema (freccia/hand) e aiuta a capire il punto esatto di puntamento.",
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      }
+    },
+    {
+      "key": "field_cursor_dot_enabled",
+      "label": "Abilita dot",
+      "name": "cursor_dot_enabled",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "message": "Attivo",
+      "ui_on_text": "ON",
+      "ui_off_text": "OFF",
+      "instructions": "Mostra un piccolo cerchio vicino alla punta del cursore su desktop.",
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      }
+    },
+    {
+      "key": "field_cursor_dot_color",
+      "label": "Colore dot",
+      "name": "cursor_dot_color",
+      "type": "color_picker",
+      "default_value": "#2b1e72",
+      "enable_opacity": 0,
+      "return_format": "string",
+      "instructions": "Colore del cerchiolino.",
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      }
+    },
+    {
+      "key": "field_cursor_dot_size",
+      "label": "Dimensione dot (px)",
+      "name": "cursor_dot_size",
+      "type": "number",
+      "default_value": 10,
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "instructions": "Diametro del cerchiolino in pixel.",
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      }
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "options_page",
+        "operator": "==",
+        "value": "moma-cursori"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "seamless",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "display_title": ""
+}

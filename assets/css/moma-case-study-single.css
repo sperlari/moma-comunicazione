@@ -1,0 +1,337 @@
+.moma-case-single__heading,
+.moma-case-single__process-title,
+.moma-case-single__subheading{
+  margin: 0 0 1.15rem;
+  font-family: "Fraunces", serif;
+  color: #18085a;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.moma-case-single__heading,
+.moma-case-single__process-title{
+  font-size: clamp(2.2rem, 5vw, 4.15rem);
+}
+
+.moma-case-single__subheading{
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+}
+
+.moma-case-single__copy,
+.moma-case-single__copy p{
+  font-size: 0.98rem;
+  line-height: 1.72;
+}
+
+.moma-case-single__copy p{
+  margin: 0 0 1rem;
+}
+
+.moma-case-single__copy p:last-child{
+  margin-bottom: 0;
+}
+
+.moma-case-single__hero-img,
+.moma-case-single__feature-video-thumb,
+.moma-case-single__step-single-img,
+.moma-case-single__media-grid img,
+.moma-case-single__media-placeholder,
+.moma-case-single__tech-media-item img{
+  display: block;
+  background: #ebe7e2;
+}
+
+.moma-case-single__hero-img{
+  aspect-ratio: 2.1;
+}
+
+.moma-case-single__step-title{
+  margin: 0 0 0.9rem;
+  font-size: clamp(1.05rem, 2vw, 1.4rem);
+  font-weight: 600;
+  color: #18085a;
+}
+
+.moma-case-single__box-title{
+  margin: 0 0 1rem;
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: #18085a;
+}
+
+.moma-case-single__metric-value{
+  word-break: break-word;
+}
+
+.moma-case-single__metric-affix{
+  display: inline-block;
+}
+
+.moma-case-single__media-link{
+  position: relative;
+  overflow: hidden;
+}
+
+.moma-case-single__play{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #491caa;
+  transform: translate(-50%, -50%);
+  transition: transform 260ms cubic-bezier(.2,.8,.2,1), opacity 260ms cubic-bezier(.2,.8,.2,1);
+}
+
+.moma-case-single__play--lg svg{
+  width: 74px;
+  height: 74px;
+}
+
+.moma-case-single__media-link:hover .moma-case-single__play,
+.moma-case-single__media-link:focus-visible .moma-case-single__play{
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.moma-case-single__video-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(24,8,90,0.04) 0%, rgba(24,8,90,0.16) 100%);
+}
+
+.moma-case-single__feature-video .moma-case-single__media-link,
+.moma-case-single__feature-video-thumb{
+  border-radius: 20px;
+}
+
+.moma-case-single__feature-video-thumb{
+  aspect-ratio: 2.35;
+}
+
+.moma-case-single__media-grid{
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, .65fr);
+  grid-template-areas:
+    "primary top-one"
+    "primary top-two"
+    "bottom bottom";
+}
+
+.moma-case-single__grid-slot--primary{ grid-area: primary; }
+.moma-case-single__grid-slot--top-one{ grid-area: top-one; }
+.moma-case-single__grid-slot--top-two{ grid-area: top-two; }
+.moma-case-single__grid-slot--bottom{ grid-area: bottom; }
+
+.moma-case-single__grid-slot .moma-case-single__media-link,
+.moma-case-single__grid-slot img,
+.moma-case-single__grid-slot .moma-case-single__media-placeholder{
+  height: 100%;
+  min-height: 100%;
+}
+
+.moma-case-single__grid-slot--primary img,
+.moma-case-single__grid-slot--primary .moma-case-single__media-placeholder{
+  aspect-ratio: 1.18;
+}
+
+.moma-case-single__grid-slot--top-one img,
+.moma-case-single__grid-slot--top-one .moma-case-single__media-placeholder,
+.moma-case-single__grid-slot--top-two img,
+.moma-case-single__grid-slot--top-two .moma-case-single__media-placeholder{
+  aspect-ratio: 1.18;
+}
+
+.moma-case-single__grid-slot--bottom img,
+.moma-case-single__grid-slot--bottom .moma-case-single__media-placeholder{
+  aspect-ratio: 2.36;
+}
+
+.moma-case-single__work-banner{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #f8f2ec;
+  background: linear-gradient(90deg, #a85412 0%, #e9770b 52%, #f18810 100%);
+  box-shadow: 0 14px 34px rgba(189, 112, 22, 0.22);
+}
+
+.moma-case-single__work-banner::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at left center, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 55%);
+}
+
+.moma-case-single__work-banner-title,
+.moma-case-single__work-banner-cta{
+  position: relative;
+  z-index: 1;
+}
+
+.moma-case-single__work-banner-title{
+  font-family: "Fraunces", serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+}
+
+.moma-case-single__work-banner-cta{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 999px;
+  background: #f8f2ec;
+  color: #d96f0b;
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms cubic-bezier(.2,.8,.2,1);
+}
+
+.moma-case-single__work-banner:hover .moma-case-single__work-banner-cta,
+.moma-case-single__work-banner:focus-visible .moma-case-single__work-banner-cta{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(255,255,255,0.2);
+}
+
+.moma-case-single__lightbox{
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 180ms ease, visibility 180ms ease;
+}
+
+.moma-case-single__lightbox.is-open{
+  opacity: 1;
+  visibility: visible;
+}
+
+.moma-case-single__lightbox-backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 7, 28, 0.82);
+  backdrop-filter: blur(6px);
+}
+
+.moma-case-single__lightbox-dialog{
+  position: relative;
+  z-index: 2;
+  width: min(1100px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 0;
+}
+
+.moma-case-single__lightbox-content{
+  position: relative;
+  width: 100%;
+  max-height: calc(100vh - 2rem);
+  overflow: hidden;
+  border-radius: 22px;
+  background: #0c0725;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.3);
+}
+
+.moma-case-single__lightbox-content img,
+.moma-case-single__lightbox-content video,
+.moma-case-single__lightbox-content iframe{
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 2rem);
+  object-fit: contain;
+  background: #0c0725;
+}
+
+.moma-case-single__lightbox-content iframe{
+  aspect-ratio: 16 / 9;
+  min-height: min(70vh, 620px);
+}
+
+.moma-case-single__lightbox-close{
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(247, 243, 238, 0.94);
+  color: #18085a;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.moma-case-single__lightbox-close:hover,
+.moma-case-single__lightbox-close:focus-visible{
+  background: #ffffff;
+}
+
+@media (max-width: 899px){
+  .moma-case-single__hero-img,
+  .moma-case-single__feature-video-thumb{
+    aspect-ratio: 1.35;
+  }
+
+  .moma-case-single__media-grid{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "primary"
+      "top-one"
+      "top-two"
+      "bottom";
+  }
+
+  .moma-case-single__grid-slot--primary img,
+  .moma-case-single__grid-slot--primary .moma-case-single__media-placeholder,
+  .moma-case-single__grid-slot--top-one img,
+  .moma-case-single__grid-slot--top-one .moma-case-single__media-placeholder,
+  .moma-case-single__grid-slot--top-two img,
+  .moma-case-single__grid-slot--top-two .moma-case-single__media-placeholder,
+  .moma-case-single__grid-slot--bottom img,
+  .moma-case-single__grid-slot--bottom .moma-case-single__media-placeholder{
+    aspect-ratio: 1.38;
+  }
+
+  .moma-case-single__work-banner{
+    padding: 1.15rem 1.1rem;
+  }
+
+  .moma-case-single__work-banner-title{
+    font-size: clamp(1.8rem, 7vw, 2.6rem);
+  }
+
+  .moma-case-single__lightbox{
+    padding: 1rem;
+  }
+
+  .moma-case-single__lightbox-dialog,
+  .moma-case-single__lightbox-content img,
+  .moma-case-single__lightbox-content video,
+  .moma-case-single__lightbox-content iframe{
+    max-height: calc(100vh - 1rem);
+  }
+}

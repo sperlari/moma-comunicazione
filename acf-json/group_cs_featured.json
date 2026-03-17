@@ -1,0 +1,42 @@
+{
+  "key": "group_cs_featured",
+  "title": "Case Study – Opzioni",
+  "fields": [
+    {
+      "key": "field_cs_featured",
+      "label": "In evidenza (priorità in Home)",
+      "name": "cs_featured",
+      "type": "true_false",
+      "instructions": "Se attivo, questo case study viene mostrato prima degli altri nelle selezioni automatiche (Hero/stack).",
+      "required": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "message": "Attivo",
+      "default_value": 0,
+      "ui": 1,
+      "ui_on_text": "ON",
+      "ui_off_text": "OFF"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "case_study"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "side",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0
+}

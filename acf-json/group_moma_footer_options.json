@@ -1,0 +1,322 @@
+{
+  "key": "group_moma_footer_options",
+  "title": "Impostazioni Tema – Footer",
+  "fields": [
+    {
+      "key": "field_moma_footer_tab_cta",
+      "label": "CTA",
+      "name": "",
+      "type": "tab",
+      "instructions": "Titolo e link della sezione che introduce il footer (come da Figma).",
+      "required": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_footer_cta_title",
+      "label": "Titolo",
+      "name": "footer_cta_title",
+      "type": "text",
+      "instructions": "Es. ‘Frase per andare ai contatti’.",
+      "required": 0,
+      "wrapper": {
+        "width": "66",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Frase per andare ai contatti",
+      "placeholder": "",
+      "maxlength": 120
+    },
+    {
+      "key": "field_footer_cta_link",
+      "label": "Link CTA",
+      "name": "footer_cta_link",
+      "type": "link",
+      "instructions": "Link dell’icona (freccia).",
+      "required": 0,
+      "wrapper": {
+        "width": "34",
+        "class": "",
+        "id": ""
+      },
+      "return_format": "array"
+    },
+    {
+      "key": "field_moma_footer_tab_hubspot",
+      "label": "Newsletter (HubSpot)",
+      "name": "",
+      "type": "tab",
+      "instructions": "Configurazione del form HubSpot mostrato nel footer.",
+      "required": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_footer_hubspot_portal_id",
+      "label": "Portal ID",
+      "name": "footer_hubspot_portal_id",
+      "type": "text",
+      "instructions": "ID del portale HubSpot.",
+      "required": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "1234567",
+      "maxlength": 30
+    },
+    {
+      "key": "field_footer_hubspot_form_id",
+      "label": "Form ID",
+      "name": "footer_hubspot_form_id",
+      "type": "text",
+      "instructions": "ID del form HubSpot.",
+      "required": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "maxlength": 80
+    },
+    {
+      "key": "field_footer_hubspot_target",
+      "label": "Target (CSS selector)",
+      "name": "footer_hubspot_target",
+      "type": "text",
+      "instructions": "Elemento dove renderizzare il form. Default: #hs-newsletter-form",
+      "required": 0,
+      "wrapper": {
+        "width": "34",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "#hs-newsletter-form",
+      "placeholder": "#hs-newsletter-form",
+      "maxlength": 80
+    },
+    {
+      "key": "field_moma_footer_tab_menu",
+      "label": "Menu (Pagine)",
+      "name": "",
+      "type": "tab",
+      "instructions": "Link del menu nel box bianco.",
+      "required": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_footer_links",
+      "label": "Link menu",
+      "name": "footer_links",
+      "type": "repeater",
+      "instructions": "Se vuoto, usa il menu Primary come fallback.",
+      "required": 0,
+      "wrapper": {
+        "width": "100",
+        "class": "",
+        "id": ""
+      },
+      "collapsed": "field_footer_links_label",
+      "min": 0,
+      "max": 0,
+      "layout": "table",
+      "button_label": "Aggiungi link",
+      "sub_fields": [
+        {
+          "key": "field_footer_links_page",
+          "label": "Pagina",
+          "name": "page",
+          "type": "post_object",
+          "required": 1,
+          "wrapper": {
+            "width": "60",
+            "class": "",
+            "id": ""
+          },
+          "post_type": [
+            "page"
+          ],
+          "allow_null": 0,
+          "multiple": 0,
+          "return_format": "id",
+          "ui": 1
+        },
+        {
+          "key": "field_footer_links_label",
+          "label": "Etichetta (override)",
+          "name": "label",
+          "type": "text",
+          "instructions": "Se vuoto usa il titolo pagina.",
+          "required": 0,
+          "wrapper": {
+            "width": "40",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "Servizi",
+          "maxlength": 60
+        }
+      ]
+    },
+    {
+      "key": "field_moma_footer_tab_social",
+      "label": "Social",
+      "name": "",
+      "type": "tab",
+      "instructions": "Link social nel footer.",
+      "required": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_footer_social_facebook",
+      "label": "Facebook URL",
+      "name": "footer_social_facebook",
+      "type": "url",
+      "required": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "https://www.facebook.com/..."
+    },
+    {
+      "key": "field_footer_social_tiktok",
+      "label": "TikTok URL",
+      "name": "footer_social_tiktok",
+      "type": "url",
+      "required": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "https://www.tiktok.com/@..."
+    },
+    {
+      "key": "field_footer_social_instagram",
+      "label": "Instagram URL",
+      "name": "footer_social_instagram",
+      "type": "url",
+      "required": 0,
+      "wrapper": {
+        "width": "34",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "https://www.instagram.com/..."
+    },
+    {
+      "key": "field_moma_footer_tab_case_study",
+      "label": "Case Study box",
+      "name": "",
+      "type": "tab",
+      "instructions": "Gestione del box Case Study a destra.",
+      "required": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_footer_case_study_mode",
+      "label": "Modalità",
+      "name": "footer_case_study_mode",
+      "type": "radio",
+      "required": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "random": "Random",
+        "manual": "Manuale",
+        "off": "Disattivato"
+      },
+      "allow_null": 0,
+      "default_value": "random",
+      "layout": "vertical",
+      "return_format": "value"
+    },
+    {
+      "key": "field_footer_case_study_manual",
+      "label": "Seleziona Case Study",
+      "name": "footer_case_study_manual",
+      "type": "post_object",
+      "instructions": "Usato solo se Modalità = Manuale.",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_footer_case_study_mode",
+            "operator": "==",
+            "value": "manual"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "67",
+        "class": "",
+        "id": ""
+      },
+      "post_type": [
+        "case_study"
+      ],
+      "allow_null": 1,
+      "multiple": 0,
+      "return_format": "id",
+      "ui": 1
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "options_page",
+        "operator": "==",
+        "value": "moma-footer"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "show_in_rest": 0
+}

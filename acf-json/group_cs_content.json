@@ -1,0 +1,55 @@
+{
+  "key": "group_cs_content",
+  "title": "Case Study – Contenuto",
+  "fields": [
+    {
+      "key": "field_cs_subtitle",
+      "label": "Sottotitolo",
+      "name": "cs_subtitle",
+      "type": "text",
+      "instructions": "Frase breve sotto al titolo del case study.",
+      "required": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "Inbound Marketing, Digital Strategy & HubSpot",
+      "maxlength": 120
+    },
+    {
+      "key": "field_cs_image_square",
+      "label": "Immagine quadrata (Hero Home)",
+      "name": "cs_image_square",
+      "type": "image",
+      "return_format": "id",
+      "preview_size": "medium",
+      "library": "all",
+      "instructions": "Opzionale. Usata nella Hero della Home (canvas). Se vuota, verrà usata l’immagine in evidenza.",
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      }
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "case_study"
+      }
+    ]
+  ],
+  "menu_order": 1,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0
+}

@@ -1,0 +1,120 @@
+{
+  "key": "group_home_cursors",
+  "title": "Home – Cursori (override)",
+  "fields": [
+    {
+      "key": "field_home_cursors_intro",
+      "label": "",
+      "name": "",
+      "type": "message",
+      "message": "Override opzionale per i cursori immagine della Home. Se non imposti un’immagine qui, verrà usata quella definita in Opzioni Tema.",
+      "new_lines": "wpautop",
+      "esc_html": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      }
+    },
+    {
+      "key": "field_home_cursors_acc_hero",
+      "label": "Hero (canvas)",
+      "name": "",
+      "type": "accordion",
+      "open": 0,
+      "multi_expand": 0,
+      "endpoint": 0
+    },
+    {
+      "key": "field_home_hero_cursor_enabled",
+      "label": "Puntatore immagine su card",
+      "name": "home_hero_cursor_enabled",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "message": "Attivo",
+      "ui_on_text": "ON",
+      "ui_off_text": "OFF",
+      "instructions": "Se disattivo, il puntatore immagine non comparirà sulle card della Hero.",
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      }
+    },
+    {
+      "key": "field_home_hero_cursor_image",
+      "label": "Immagine puntatore (override)",
+      "name": "home_hero_cursor_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "instructions": "Opzionale. Se selezionata, sostituisce l’immagine globale.",
+      "wrapper": {
+        "width": "67",
+        "class": "",
+        "id": ""
+      }
+    },
+    {
+      "key": "field_home_cursors_acc_cs",
+      "label": "Case Studies (slider)",
+      "name": "",
+      "type": "accordion",
+      "open": 0,
+      "multi_expand": 0,
+      "endpoint": 0
+    },
+    {
+      "key": "field_home_cs_cursor_enabled",
+      "label": "Puntatore immagine su immagine case study",
+      "name": "home_cs_cursor_enabled",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "message": "Attivo",
+      "ui_on_text": "ON",
+      "ui_off_text": "OFF",
+      "instructions": "Se disattivo, il puntatore immagine non comparirà sull’immagine dei case study nello slider.",
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      }
+    },
+    {
+      "key": "field_home_cs_cursor_image",
+      "label": "Immagine puntatore (override)",
+      "name": "home_cs_cursor_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "instructions": "Opzionale. Se selezionata, sostituisce l’immagine globale.",
+      "wrapper": {
+        "width": "67",
+        "class": "",
+        "id": ""
+      }
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_type",
+        "operator": "==",
+        "value": "front_page"
+      }
+    ]
+  ],
+  "menu_order": 2,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0
+}

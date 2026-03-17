@@ -1,0 +1,385 @@
+{
+  "key": "group_block_banner_team",
+  "title": "Block – Banner Team",
+  "fields": [
+    {
+      "key": "field_banner_team_title",
+      "label": "Titolo",
+      "name": "title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Team",
+      "maxlength": 80,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_banner_team_text",
+      "label": "Testo",
+      "name": "text",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "100",
+        "class": "",
+        "id": ""
+      },
+      "rows": 3,
+      "new_lines": "br",
+      "default_value": "Qui trovi persone su cui puoi contare, un punto di riferimento vero per ogni fase del percorso.",
+      "maxlength": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_banner_team_button_label",
+      "label": "Testo pulsante",
+      "name": "button_label",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Fai il punto con noi.",
+      "maxlength": 60,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_banner_team_button_link",
+      "label": "Link pulsante",
+      "name": "button_link",
+      "aria-label": "",
+      "type": "link",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "return_format": "array"
+    },
+    {
+      "key": "field_banner_team_tab_anim",
+      "label": "Animazione (Reveal)",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0,
+      "selected": 0
+    },
+    {
+      "key": "field_banner_team_reveal_enabled",
+      "label": "Attiva animazione",
+      "name": "reveal_enabled",
+      "aria-label": "",
+      "type": "true_false",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": 1,
+      "ui": 1,
+      "message": "",
+      "ui_on_text": "",
+      "ui_off_text": ""
+    },
+    {
+      "key": "field_banner_team_reveal_y",
+      "label": "Offset Y (px)",
+      "name": "reveal_y",
+      "aria-label": "",
+      "type": "number",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_banner_team_reveal_enabled",
+            "operator": "==",
+            "value": "1"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": 24,
+      "min": 0,
+      "max": 120,
+      "step": 1,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_banner_team_reveal_duration",
+      "label": "Durata (s)",
+      "name": "reveal_duration",
+      "aria-label": "",
+      "type": "number",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_banner_team_reveal_enabled",
+            "operator": "==",
+            "value": "1"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": 0.85,
+      "min": 0.1,
+      "max": 3,
+      "step": 0.05,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_banner_team_reveal_delay",
+      "label": "Delay (s)",
+      "name": "reveal_delay",
+      "aria-label": "",
+      "type": "number",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_banner_team_reveal_enabled",
+            "operator": "==",
+            "value": "1"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": 0,
+      "min": 0,
+      "max": 2,
+      "step": 0.05,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_banner_team_reveal_once",
+      "label": "Esegui una sola volta",
+      "name": "reveal_once",
+      "aria-label": "",
+      "type": "true_false",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_banner_team_reveal_enabled",
+            "operator": "==",
+            "value": "1"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": 1,
+      "ui": 1,
+      "message": "",
+      "ui_on_text": "",
+      "ui_off_text": ""
+    },
+    {
+      "key": "field_banner_team_reveal_start",
+      "label": "Start ScrollTrigger",
+      "name": "reveal_start",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "Esempio: top 85%",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_banner_team_reveal_enabled",
+            "operator": "==",
+            "value": "1"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "top 85%",
+      "maxlength": "",
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_banner_team_reveal_ease",
+      "label": "Ease",
+      "name": "reveal_ease",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "Esempio: power3.out",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_banner_team_reveal_enabled",
+            "operator": "==",
+            "value": "1"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "power3.out",
+      "maxlength": "",
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_banner_team_tab_cursor",
+      "label": "Puntatore",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0,
+      "selected": 0
+    },
+    {
+      "key": "field_banner_team_cursor_enabled",
+      "label": "Puntatore immagine",
+      "name": "cursor_enabled",
+      "aria-label": "",
+      "type": "true_false",
+      "instructions": "Attiva/disattiva il puntatore immagine per questo blocco (override rispetto alle opzioni globali).",
+      "required": 0,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": 1,
+      "ui": 1,
+      "message": "Attivo",
+      "ui_on_text": "ON",
+      "ui_off_text": "OFF"
+    },
+    {
+      "key": "field_banner_team_cursor_image",
+      "label": "Immagine puntatore (override)",
+      "name": "cursor_image",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "Se selezionata, questa immagine sostituisce quella globale impostata in Opzioni Tema.",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_banner_team_cursor_enabled",
+            "operator": "==",
+            "value": "1"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "67",
+        "class": "",
+        "id": ""
+      },
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "min_width": 0,
+      "min_height": 0,
+      "min_size": 0,
+      "max_width": 0,
+      "max_height": 0,
+      "max_size": 0,
+      "mime_types": ""
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/banner-team"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "seamless",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "display_title": "",
+  "modified": 1771867420
+}
