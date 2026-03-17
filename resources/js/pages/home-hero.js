@@ -23,6 +23,40 @@ function isMobileNow() {
 function animateWordmark(el) {
   if (!el || prefersReduced()) return;
 
+  const mode = el.dataset.momaWordmarkMode || "text";
+  if (mode === "svg") {
+    const svg = el.querySelector("svg");
+    if (!svg) return;
+
+    const animationMode = el.dataset.momaWordmarkAnimation || "whole";
+    const parts = Array.from(svg.querySelectorAll("path, circle, ellipse, rect, polygon, polyline"));
+
+    gsap.set(el, { autoAlpha: 1 });
+    gsap.set(svg, { autoAlpha: 1 });
+
+    if (animationMode === "parts" && parts.length > 1) {
+      gsap.set(parts, { autoAlpha: 0, y: 10, transformOrigin: "50% 50%" });
+
+      gsap.timeline()
+        .to(parts, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.20,
+          ease: "power2.out",
+          stagger: 0.035,
+        });
+
+      return;
+    }
+
+    gsap.fromTo(
+      svg,
+      { autoAlpha: 0, y: 12, scale: 0.96, transformOrigin: "50% 50%" },
+      { autoAlpha: 1, y: 0, scale: 1, duration: 0.52, ease: "power2.out" }
+    );
+    return;
+  }
+
   gsap.set(el, { autoAlpha: 0 });
 
   const raw = el.textContent.trim();

@@ -5,7 +5,10 @@ export default defineConfig(({ command }) => {
     const isBuild = command === 'build';
 
     return {
-        base: isBuild ? '/wp-content/themes/moma_theme/dist/' : '/',
+        // Build assets must stay portable across environments where the theme
+        // folder name can differ (e.g. demo zip uploads or renamed theme dirs).
+        // Using a relative base keeps dynamic Vite chunks resolvable from dist/assets.
+        base: isBuild ? './' : '/',
         server: {
             port: 3000,
             cors: true,

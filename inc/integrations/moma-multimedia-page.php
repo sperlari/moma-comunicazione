@@ -1,6 +1,46 @@
 <?php
 if (!defined('ABSPATH')) exit;
 
+add_filter('query_vars', function ($vars) {
+  $vars[] = 'moma_video_category';
+  $vars[] = 'csmedia';
+  return $vars;
+});
+
+add_action('init', function () {
+  $page = function_exists('moma_multimedia_get_page') ? moma_multimedia_get_page() : null;
+  if (!($page instanceof WP_Post)) return;
+
+  $path = moma_multimedia_get_page_path((int) $page->ID);
+  if ($path === '') return;
+
+  add_rewrite_rule(
+    '^' . preg_quote($path, '/') . '/categoria-video/([^/]+)/pagina/([0-9]+)/?$',
+    'index.php?page_id=' . (int) $page->ID . '&moma_video_category=$matches[1]&csmedia=$matches[2]',
+    'top'
+  );
+
+  add_rewrite_rule(
+    '^' . preg_quote($path, '/') . '/categoria-video/([^/]+)/?$',
+    'index.php?page_id=' . (int) $page->ID . '&moma_video_category=$matches[1]',
+    'top'
+  );
+
+  add_rewrite_rule(
+    '^' . preg_quote($path, '/') . '/pagina/([0-9]+)/?$',
+    'index.php?page_id=' . (int) $page->ID . '&csmedia=$matches[1]',
+    'top'
+  );
+});
+
+add_action('init', function () {
+  $version = 'moma_multimedia_rewrite_v1';
+  if (get_option('moma_multimedia_rewrite_version') === $version) return;
+
+  flush_rewrite_rules(false);
+  update_option('moma_multimedia_rewrite_version', $version, false);
+}, 20);
+
 add_action('wp_enqueue_scripts', function () {
   if (!is_page_template('templates/page-multimedia.php')) return;
 

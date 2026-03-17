@@ -66,13 +66,31 @@ $cursor_url = (is_array($cursor_img) && !empty($cursor_img['url'])) ? $cursor_im
 $cursor_attrs = ($global_enabled && $cursor_enabled && $cursor_url)
   ? sprintf(' data-cursor-scope="1" data-cursor-img="%s"', esc_url($cursor_url))
   : '';
+
+$use_svg_logo = function_exists('get_field') ? (bool) get_field('home_hero_use_svg_logo') : false;
+$svg_logo = function_exists('get_field') ? get_field('home_hero_logo_svg') : null;
+$svg_logo_animation = function_exists('get_field') ? (string) (get_field('home_hero_logo_animation_mode') ?: 'whole') : 'whole';
+$inline_logo_svg = ($use_svg_logo && function_exists('moma_get_inline_svg'))
+  ? moma_get_inline_svg($svg_logo, [
+      'class'      => 'moma-hero__wordmark-svg',
+      'role'       => 'img',
+      'aria_label' => 'moma',
+    ])
+  : '';
 ?>
 <section class="moma-hero">
 
   <div class="z-10 absolute inset-0 place-items-center grid pointer-events-none">
-    <h1 class="font-fraunces text-[88px] md:text-[120px] leading-none moma-hero__wordmark">
-      moma<span class="moma-hero__dot">.</span>
-    </h1>
+    <?php if ($inline_logo_svg !== ''): ?>
+      <h1 class="font-fraunces leading-none moma-hero__wordmark moma-hero__wordmark--svg" data-moma-wordmark="1" data-moma-wordmark-mode="svg" data-moma-wordmark-animation="<?php echo esc_attr($svg_logo_animation); ?>">
+        <span class="screen-reader-text">moma</span>
+        <span class="moma-hero__wordmark-svg-wrap" aria-hidden="true"><?php echo $inline_logo_svg; ?></span>
+      </h1>
+    <?php else: ?>
+      <h1 class="font-fraunces text-[88px] md:text-[120px] leading-none moma-hero__wordmark" data-moma-wordmark="1">
+        moma<span class="moma-hero__dot">.</span>
+      </h1>
+    <?php endif; ?>
 
   </div>
 

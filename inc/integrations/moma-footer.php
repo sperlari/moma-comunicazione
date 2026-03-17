@@ -8,25 +8,6 @@ if (!defined('ABSPATH')) exit;
  */
 
 /**
- * Enqueue HubSpot forms script SOLO se configurato in Options.
- */
-add_action('wp_enqueue_scripts', function () {
-  if (!function_exists('get_field')) return;
-
-  $portal = (string) (get_field('footer_hubspot_portal_id', 'option') ?: '');
-  $form   = (string) (get_field('footer_hubspot_form_id', 'option') ?: '');
-  if (!$portal || !$form) return;
-
-  wp_enqueue_script(
-    'hubspot-forms',
-    'https://js.hsforms.net/forms/v2.js',
-    [],
-    null,
-    true
-  );
-}, 20);
-
-/**
  * Cache degli ID dei case study pubblicati.
  */
 function moma_get_case_study_ids_cached(): array {

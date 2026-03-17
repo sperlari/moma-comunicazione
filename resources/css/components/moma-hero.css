@@ -93,11 +93,31 @@
     pointer-events: none;
   }
 
-  @media (max-width: 768px){
-  .moma-hero__canvas-inner{ width: 125vw; height: 125svh; }
-}
+  .moma-hero__wordmark--svg{
+    width: min(82vw, 760px);
+    max-width: 760px;
+  }
 
-.moma-hero__dot{
-  color: #f59f2f; /* arancione */
-}
+  .moma-hero__wordmark-svg-wrap{
+    display: block;
+    width: 100%;
+  }
+
+  .moma-hero__wordmark-svg{
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 768px){
+    .moma-hero__canvas-inner{ width: 125vw; height: 125svh; }
+
+    .moma-hero__wordmark--svg{
+      width: min(88vw, 540px);
+    }
+  }
+
+  .moma-hero__dot{
+    color: #f59f2f; /* arancione */
+  }
 }

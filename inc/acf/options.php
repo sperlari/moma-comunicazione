@@ -24,6 +24,20 @@ add_action('acf/init', function () {
     'menu_slug'   => 'moma-footer',
   ]);
 
+  acf_add_options_sub_page([
+    'page_title'  => 'Pagina Multimedia',
+    'menu_title'  => 'Pagina Multimedia',
+    'parent_slug' => 'moma-theme-settings',
+    'menu_slug'   => 'moma-multimedia-page',
+  ]);
+
+  acf_add_options_sub_page([
+    'page_title'  => 'Pagina Contatti',
+    'menu_title'  => 'Pagina Contatti',
+    'parent_slug' => 'moma-theme-settings',
+    'menu_slug'   => 'moma-contatti-page',
+  ]);
+
   // Aggiungi dove già fai acf_add_options_page / acf_add_options_sub_page
 acf_add_options_sub_page([
   'page_title'  => 'Pagina Servizi',

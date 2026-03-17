@@ -23,7 +23,7 @@ add_action('acf/init', function () {
         'label' => 'Indicazioni',
         'name' => '',
         'type' => 'message',
-        'message' => '<strong>Pagina Multimedia</strong><br>Questa pagina mostra automaticamente i case studies che hanno un video principale compilato. Le categorie sono lette dai case studies e i relativi pulsanti portano sempre all’archivio della categoria selezionata.',
+        'message' => '<strong>Pagina Multimedia</strong><br>Questa pagina mostra automaticamente i case studies che hanno un video principale compilato. I filtri e i pulsanti categoria usano le categorie video assegnate nel blocco video del singolo case study e rimandano sempre alla stessa pagina Multimedia filtrata.',
       ],
       [
         'key' => 'field_mmp_tab_hero',

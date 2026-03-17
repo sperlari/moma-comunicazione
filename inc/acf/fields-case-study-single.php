@@ -242,6 +242,18 @@ if (!function_exists('moma_cs_single_video_group_field')) {
           'wrapper' => ['width' => '50'],
           'instructions' => 'Immagine mostrata nella pagina prima del click sul play.',
         ],
+        [
+          'key' => $prefix . '_video_categories',
+          'label' => 'Categorie video multimedia',
+          'name' => 'video_categories',
+          'type' => 'select',
+          'choices' => [],
+          'multiple' => 1,
+          'ui' => 1,
+          'allow_null' => 1,
+          'wrapper' => ['width' => '50'],
+          'instructions' => 'Seleziona una o piÃ¹ categorie video giÃ  create nella pagina opzioni Multimedia. Queste categorie verranno usate solo nella pagina Multimedia, non negli archivi dei case studies.',
+        ],
       ],
     ];
   }
@@ -749,4 +761,18 @@ add_action('acf/init', function () {
       ],
     ],
   ]);
+});
+
+add_filter('acf/load_field/key=field_css_feature_video_video_categories', function ($field) {
+  $field['choices'] = [];
+
+  if (!function_exists('moma_multimedia_get_video_category_registry')) {
+    return $field;
+  }
+
+  foreach (moma_multimedia_get_video_category_registry() as $slug => $item) {
+    $field['choices'][$slug] = (string) ($item['label'] ?? $slug);
+  }
+
+  return $field;
 });

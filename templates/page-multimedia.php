@@ -50,46 +50,49 @@ foreach ($all_posts as $post_obj) {
   $thumb_id = (int) get_post_thumbnail_id($pid);
   if (!$thumb_id) continue;
 
-  $terms = get_the_terms($pid, 'case_study_category');
-  $chip_terms = (!is_wp_error($terms) && !empty($terms)) ? array_slice($terms, 0, 3) : [];
+  $video_categories = function_exists('moma_multimedia_get_video_categories_for_post')
+    ? array_slice(moma_multimedia_get_video_categories_for_post($pid), 0, 3)
+    : [];
   $subtitle = function_exists('get_field') ? trim((string) get_field('cs_subtitle', $pid)) : '';
   if ($subtitle === '' && has_excerpt($pid)) {
     $subtitle = get_the_excerpt($pid);
   }
 
   $video_items[] = [
-    'post'       => $post_obj,
-    'thumb_id'   => $thumb_id,
-    'subtitle'   => $subtitle,
-    'chip_terms' => $chip_terms,
-    'video'      => $video_media,
+    'post'             => $post_obj,
+    'thumb_id'         => $thumb_id,
+    'subtitle'         => $subtitle,
+    'video_categories' => $video_categories,
+    'video'            => $video_media,
   ];
 }
 
-$term_links = !empty($video_items) ? moma_case_study_collect_filter_terms(array_map(static fn($item) => $item['post'], $video_items)) : [];
-$term_links = array_slice($term_links, 0, 6);
+$filter_categories = function_exists('moma_multimedia_collect_video_categories')
+  ? moma_multimedia_collect_video_categories($video_items)
+  : [];
 
-$current_page = isset($_GET['csmedia']) ? max(1, (int) $_GET['csmedia']) : 1;
+$current_video_category = function_exists('get_query_var')
+  ? moma_multimedia_sanitize_category_slug((string) get_query_var('moma_video_category'))
+  : '';
+
+if ($current_video_category !== '') {
+  $video_items = array_values(array_filter($video_items, static function ($item) use ($current_video_category) {
+    foreach ((array) ($item['video_categories'] ?? []) as $category) {
+      if (moma_multimedia_sanitize_category_slug((string) ($category['slug'] ?? '')) === $current_video_category) {
+        return true;
+      }
+    }
+
+    return false;
+  }));
+}
+
+$current_page = max(1, (int) (get_query_var('csmedia') ?: ($_GET['csmedia'] ?? 1)));
 $total_items = count($video_items);
 $total_pages = max(1, (int) ceil($total_items / $per_page));
 $current_page = min($current_page, $total_pages);
 $offset = ($current_page - 1) * $per_page;
 $paged_items = array_slice($video_items, $offset, $per_page);
-
-$base_url = get_permalink($page_id);
-$pagination_links = '';
-if ($total_pages > 1) {
-  $pagination_links = paginate_links([
-    'base'      => esc_url_raw(add_query_arg('csmedia', '%#%', $base_url)),
-    'format'    => '',
-    'current'   => $current_page,
-    'total'     => $total_pages,
-    'type'      => 'list',
-    'prev_next' => false,
-    'end_size'  => 1,
-    'mid_size'  => 1,
-  ]);
-}
 
 $poster_url = (is_array($hero_poster) && !empty($hero_poster['url'])) ? $hero_poster['url'] : '';
 ?>
@@ -111,12 +114,27 @@ $poster_url = (is_array($hero_poster) && !empty($hero_poster['url'])) ? $hero_po
   </section>
 
   <section class="container mx-auto px-4 py-16 md:py-20 lg:py-24">
-    <?php if (!empty($term_links)): ?>
+    <?php if (!empty($filter_categories)): ?>
       <ul class="moma-multimedia-page__chips m-0 mb-8 flex list-none flex-wrap gap-2 p-0 justify-center" data-moma-reveal="fade-up" data-reveal-y="20" data-reveal-duration="1.00" data-reveal-delay="0.02" data-reveal-start="top 88%" data-reveal-once="1">
-        <?php foreach ($term_links as $index => $term_item): ?>
-          <?php if (($term_item['term'] ?? null) instanceof WP_Term): ?>
-            <li><?php echo moma_case_study_render_term_chip($term_item['term'], ['dot' => $index === 0]); ?></li>
-          <?php endif; ?>
+        <li>
+          <?php
+          echo moma_render_custom_chip('Tutti', [
+            'dot'     => true,
+            'current' => $current_video_category === '',
+            'href'    => moma_multimedia_get_page_url($page_id),
+          ]);
+          ?>
+        </li>
+        <?php foreach ($filter_categories as $index => $category): ?>
+          <li>
+            <?php
+            echo moma_render_custom_chip((string) $category['label'], [
+              'dot'     => false,
+              'current' => $current_video_category === (string) $category['slug'],
+              'href'    => moma_multimedia_get_video_category_url((string) $category['slug'], $page_id),
+            ]);
+            ?>
+          </li>
         <?php endforeach; ?>
       </ul>
     <?php endif; ?>
@@ -161,10 +179,18 @@ $poster_url = (is_array($hero_poster) && !empty($hero_poster['url'])) ? $hero_po
                 </a>
               </div>
 
-              <?php if (!empty($item['chip_terms'])): ?>
-                <ul class="m-0 mt-4 flex list-none flex-wrap gap-2 p-0" aria-label="Categorie case study">
-                  <?php foreach ($item['chip_terms'] as $chip_index => $term): ?>
-                    <li><?php echo moma_case_study_render_term_chip($term, ['dot' => $chip_index === 0]); ?></li>
+              <?php if (!empty($item['video_categories'])): ?>
+                <ul class="m-0 mt-4 flex list-none flex-wrap gap-2 p-0" aria-label="Categorie video">
+                  <?php foreach ($item['video_categories'] as $chip_index => $category): ?>
+                    <li>
+                      <?php
+                      echo moma_render_custom_chip((string) ($category['label'] ?? ''), [
+                        'dot'     => $chip_index === 0,
+                        'current' => $current_video_category === (string) ($category['slug'] ?? ''),
+                        'href'    => moma_multimedia_get_video_category_url((string) ($category['slug'] ?? ''), $page_id),
+                      ]);
+                      ?>
+                    </li>
                   <?php endforeach; ?>
                 </ul>
               <?php endif; ?>
@@ -173,14 +199,24 @@ $poster_url = (is_array($hero_poster) && !empty($hero_poster['url'])) ? $hero_po
         <?php endforeach; ?>
       </div>
 
-      <?php if ($pagination_links): ?>
+      <?php if ($total_pages > 1): ?>
         <nav class="moma-multimedia-page__pagination mt-10 md:mt-12" aria-label="Paginazione multimedia">
-          <?php echo wp_kses_post($pagination_links); ?>
+          <ul>
+            <?php for ($page_number = 1; $page_number <= $total_pages; $page_number++): ?>
+              <li>
+                <?php if ($page_number === $current_page): ?>
+                  <span class="current" aria-current="page"><?php echo esc_html((string) $page_number); ?></span>
+                <?php else: ?>
+                  <a href="<?php echo esc_url($current_video_category !== '' ? moma_multimedia_get_video_category_url($current_video_category, $page_id, $page_number) : moma_multimedia_get_page_url($page_id, $page_number)); ?>"><?php echo esc_html((string) $page_number); ?></a>
+                <?php endif; ?>
+              </li>
+            <?php endfor; ?>
+          </ul>
         </nav>
       <?php endif; ?>
     <?php else: ?>
       <div class="moma-multimedia-page__empty mt-12 rounded-[24px] border border-[#18085a]/10 bg-white/60 px-6 py-10 text-center text-[#18085a]/70">
-        <p class="m-0">Nessun case study con video principale disponibile.</p>
+        <p class="m-0"><?php echo $current_video_category !== '' ? esc_html__('Nessun video disponibile per questa categoria.', 'moma_theme') : esc_html__('Nessun case study con video principale disponibile.', 'moma_theme'); ?></p>
       </div>
     <?php endif; ?>
   </section>

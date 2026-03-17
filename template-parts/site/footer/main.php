@@ -9,7 +9,6 @@ $cta_target = is_array($cta_link) && !empty($cta_link['target']) ? (string) $cta
 
 $hs_portal = function_exists('get_field') ? (string) (get_field('footer_hubspot_portal_id', 'option') ?: '') : '';
 $hs_form   = function_exists('get_field') ? (string) (get_field('footer_hubspot_form_id', 'option') ?: '') : '';
-$hs_target = function_exists('get_field') ? (string) (get_field('footer_hubspot_target', 'option') ?: '#hs-newsletter-form') : '#hs-newsletter-form';
 
 $links = function_exists('get_field') ? (array) (get_field('footer_links', 'option') ?: []) : [];
 
@@ -46,23 +45,17 @@ $site = get_bloginfo('name');
             <div class="moma-footer__h">Iscriviti alla newsletter</div>
 
             <?php if ($hs_portal && $hs_form): ?>
-              <div id="hs-newsletter-form" class="moma-footer__hs"></div>
-              <script>
-                (function(){
-                  function init(){
-                    if(!window.hbspt || !window.hbspt.forms) return;
-                    try{
-                      window.hbspt.forms.create({
-                        portalId: "<?php echo esc_js($hs_portal); ?>",
-                        formId: "<?php echo esc_js($hs_form); ?>",
-                        target: "<?php echo esc_js($hs_target); ?>"
-                      });
-                    }catch(e){}
-                  }
-                  if(window.hbspt && window.hbspt.forms) init();
-                  else document.addEventListener('DOMContentLoaded', init);
-                })();
-              </script>
+              <?php
+              if (function_exists('moma_render_hubspot_form')) {
+                echo moma_render_hubspot_form([
+                  'context'      => 'footer',
+                  'target_id'    => 'hs-newsletter-form',
+                  'target'       => '#hs-newsletter-form',
+                  'class'        => 'moma-footer__hs',
+                  'submit_label' => 'Iscriviti',
+                ]);
+              }
+              ?>
             <?php else: ?>
               <!-- Fallback (solo per mantenere il layout se HubSpot non è ancora configurato) -->
               <form class="moma-footer__stub" action="#" onsubmit="return false;">
